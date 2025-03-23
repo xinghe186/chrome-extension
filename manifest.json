@@ -20,6 +20,7 @@
         {
             "matches": [
                 "https://www.onlyfans-downloader.com/*",
+                "https://onlyfans-downloader.com/*",
                 "http://localhost:3000/*"
             ],
             "js": [
@@ -29,6 +30,7 @@
         {
             "matches": [
                 "https://www.onlyfans-downloader.com/*",
+                "https://onlyfans-downloader.com/*",
                 "http://localhost:3000/*"
             ],
             "js": [
@@ -39,6 +41,7 @@
     "externally_connectable": {
         "matches": [
             "https://www.onlyfans-downloader.com/*",
+            "https://onlyfans-downloader.com/*",
             "http://localhost:3000/*"
         ]
     },

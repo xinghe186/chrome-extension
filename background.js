@@ -7,7 +7,7 @@ chrome.runtime.onInstalled.addListener((details) => {
 });
 // 刷新所有匹配目标URL的标签页
 function refreshTargetPages() {
-    const targetUrl = ["https://www.onlyfans-downloader.com/*", "http://localhost:3000/*"];
+    const targetUrl = ["https://www.onlyfans-downloader.com/*", "https://onlyfans-downloader.com/*", "http://localhost:3000/*"];
     // 查找所有匹配的标签页
     chrome.tabs.query({ url: targetUrl }, (tabs) => {
         if (chrome.runtime.lastError) {
@@ -42,7 +42,7 @@ chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
 chrome.runtime.onMessageExternal.addListener(async (request, sender, sendResponse) => {
 
     // 只允许目标网站消息
-    if (sender.origin !== 'https://www.onlyfans-downloader.com' && sender.origin !== 'http://localhost:3000') {
+    if (sender.origin !== 'https://onlyfans-downloader.com' && sender.origin !== 'https://www.onlyfans-downloader.com' && sender.origin !== 'http://localhost:3000') {
         return
     }
 
