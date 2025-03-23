@@ -59,9 +59,10 @@ chrome.runtime.onMessageExternal.addListener(async (request, sender, sendRespons
     // 下载
     if (request.type && request.type === 'ext-download') {
 
+        console.log('request:', request)
         chrome.downloads.download({
             url: request.url,
-            filename: 'video.mp4',
+            filename: request.filename,
             saveAs: false
         }, (downloadId) => {
             // console.log(downloadId)
