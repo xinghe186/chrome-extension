@@ -1,3 +1,34 @@
+// 监听插件安装完成事件
+chrome.runtime.onInstalled.addListener((details) => {
+    // 仅在初次安装时触发
+    if (details.reason === 'install') {
+        refreshTargetPages();
+    }
+});
+// 刷新所有匹配目标URL的标签页
+function refreshTargetPages() {
+    const targetUrl = ["https://www.onlyfans-downloader.com/*", "http://localhost:3000/*"];
+    // 查找所有匹配的标签页
+    chrome.tabs.query({ url: targetUrl }, (tabs) => {
+        if (chrome.runtime.lastError) {
+            console.error('Query error:', chrome.runtime.lastError);
+            return;
+        }
+
+        // 遍历并刷新每个标签页
+        tabs.forEach(tab => {
+            if (tab.id) {
+                chrome.tabs.reload(tab.id, {}, () => {
+                    if (chrome.runtime.lastError) {
+                        console.error('Reload error:', chrome.runtime.lastError);
+                    }
+                });
+            }
+        });
+    });
+}
+
+
 // 监听来自内容脚本的消息
 chrome.runtime.onMessage.addListener(async (message, sender, sendResponse) => {
     if (message.action === 'fetchHTML' && message.url) {
